@@ -32,6 +32,15 @@ resource "aws_subnet" "private_subnet1" {
   }
 }
 
+resource "aws_subnet" "private_subnet2" {
+  vpc_id                  = aws_vpc.skyage.id
+  cidr_block              = "172.16.3.0/24"
+  availability_zone       = "us-east-1b"
+
+  tags = {
+    Name = "PrivateSubnet2"
+  }
+}
 
 
 # Internet Gateway
@@ -106,6 +115,12 @@ resource "aws_route_table_association" "private_subnet_association-1" {
   subnet_id      = aws_subnet.private_subnet1.id
 }
 
+resource "aws_route_table" "skyage-private-rt" {
+  vpc_id = aws_vpc.skyage.id
+  tags = {
+    "Name" = "private-rt"
+  }
+}
 
 
 # Add Nat Gateway into private route table
