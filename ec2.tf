@@ -59,15 +59,13 @@ resource "aws_instance" "skyage-database-server-1" {
   key_name                    = "demo"
   subnet_id                   = aws_subnet.private_subnet1.id
   associate_public_ip_address = "false"
-  vpc_security_group_ids      = [aws_security_group.skyage-App-SG.id]
+  vpc_security_group_ids      = [aws_security_group.skyage-db-SG.id]
   user_data                   = base64encode(local.user_data)
   #user_data = file("deploy-app.sh")
   tags = {
     "Name" = "database-server-1"
   }
-  depends_on = [
-    aws_db_instance.db_instance
-  ]
+  
 }
 
 
@@ -77,15 +75,13 @@ resource "aws_instance" "skyage-database-server-2" {
   key_name                    = "demo"
   subnet_id                   = aws_subnet.private_subnet2.id
   associate_public_ip_address = "false"
-  vpc_security_group_ids      = [aws_security_group.skyage-App-SG.id]
+  vpc_security_group_ids      = [aws_security_group.skyage-db-SG.id]
   user_data                   = base64encode(local.user_data)
   #user_data = file("deploy-app.sh")
   tags = {
     "Name" = "database-server-2"
   }
-  depends_on = [
-    aws_db_instance.db_instance
-  ]
+  
 }
 
 resource "aws_instance" "skyage-database-server-3" {
@@ -94,13 +90,11 @@ resource "aws_instance" "skyage-database-server-3" {
   key_name                    = "demo"
   subnet_id                   = aws_subnet.private_subnet2.id
   associate_public_ip_address = "false"
-  vpc_security_group_ids      = [aws_security_group.skyage-App-SG.id]
+  vpc_security_group_ids      = [aws_security_group.skyage-db-SG.id]
   user_data                   = base64encode(local.user_data)
   #user_data = file("deploy-app.sh")
   tags = {
     "Name" = "database-server-3"
   }
-  depends_on = [
-    aws_db_instance.db_instance
-  ]
+  
 }
