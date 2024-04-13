@@ -110,7 +110,7 @@ resource "aws_route_table" "skyage-private-rt" {
 }
 
 # Associate both private subnets with private route table
-resource "aws_route_table_association" "private_subnet_association-1" {
+resource "aws_route_table_association" "private_subnet_association-1" {   
   route_table_id = aws_route_table.skyage-private-rt.id
   subnet_id      = aws_subnet.private_subnet1.id
 }
@@ -123,4 +123,3 @@ resource "aws_route" "skyage-route-nat-gw" {
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.skyage-nat-gw.id
 }
-
